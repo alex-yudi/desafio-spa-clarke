@@ -19,8 +19,8 @@ export function ConsumptiomCalculador() {
         resolver: zodResolver(SchemaCalculatorData),
     });
 
-    const handleCalculateConsumption = () => {
-        console.log('calculando')
+    const handleCalculateConsumption = (data: CalculatorValues) => {
+        console.log(data)
         navitageTo('/list-of-agents')
     }
     return (
