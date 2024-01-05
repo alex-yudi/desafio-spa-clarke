@@ -20,7 +20,6 @@ export function ConsumptiomCalculador() {
     });
 
     const handleCalculateConsumption = (data: CalculatorValues) => {
-        console.log(data)
         navitageTo('/list-of-agents')
     }
     return (
