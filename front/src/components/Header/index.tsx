@@ -1,6 +1,7 @@
-import { ContainerCallToAction, ContainerHeader, ContainerMenu } from "./styles";
+import { ContainerHeader, ContainerMenu } from "./styles";
 import LogoImg from '../../assets/logo.png';
 import { MenuHeader } from "./MenuHeader";
+import { Button } from "../Button";
 
 export function Header() {
     return (
@@ -9,9 +10,11 @@ export function Header() {
             <ContainerMenu>
                 <MenuHeader />
             </ContainerMenu>
-            <ContainerCallToAction>
+            <Button
+                type="button"
+            >
                 Fale com um especialista
-            </ContainerCallToAction>
+            </Button>
         </ContainerHeader>
     )
 }
