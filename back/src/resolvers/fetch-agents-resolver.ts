@@ -1,9 +1,10 @@
-import { Resolver, Query } from 'type-graphql';
-import { Agent } from '@/@types/agent';
+import 'reflect-metadata'
+
+import { Resolver, Query, ObjectType, Field, ID } from 'type-graphql';
 
 const teste = [
     {
-        id: "1",
+        id: 1,
         name: "Teste",
         link_logo: "Teste",
         state_origin: "Teste",
@@ -13,7 +14,7 @@ const teste = [
         evaluation_customers: 1,
     },
     {
-        id: "2",
+        id: 2,
         name: "Teste2",
         link_logo: "Teste2",
         state_origin: "Teste2",
@@ -24,10 +25,39 @@ const teste = [
     },
 ]
 
+@ObjectType()
+class Agent {
+    @Field(type => ID)
+    id: number;
+
+    @Field()
+    name: string;
+
+    @Field()
+    link_logo: string;
+
+    @Field()
+    state_origin: string;
+
+    @Field()
+    cost_kwh: number;
+
+    @Field()
+    lim_min_kwh: number;
+
+    @Field()
+    total_customers: number;
+
+    @Field()
+    evaluation_customers: number;
+}
+
 @Resolver()
 export class FetchAgentsResolver {
-    @Query(() => String)
-    async listAgents(): Promise<Agent[]> {
-        return teste;
+    constructor() { }
+
+    @Query(returns => [Agent])
+    async listAgents() {
+        return await teste;
     }
 }

@@ -1,4 +1,4 @@
-/* import { app } from './app'
+import { app } from './app'
 import { env } from './env'
 
 app
@@ -9,11 +9,11 @@ app
   .then(() => {
     console.log(`🚀 HTTP Server running port ${env.PORT}`)
   })
- */
 
 
-import { env } from './env'
+/* 
 import 'reflect-metadata'
+import { env } from './env'
 
 import { ApolloServer } from 'apollo-server'
 import { buildSchema } from 'type-graphql'
@@ -41,4 +41,4 @@ export async function bootstrap() {
 
 }
 
-bootstrap()
+bootstrap() */
