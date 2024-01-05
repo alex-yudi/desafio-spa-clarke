@@ -4,7 +4,7 @@ import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 
 export const NavigationMenuList = styled(NavigationMenu.NavigationMenuList)`
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
 
     min-width: 20rem;
     height: 100%;

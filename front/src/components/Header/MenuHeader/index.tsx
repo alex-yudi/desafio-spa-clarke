@@ -1,18 +1,21 @@
+import { useNavigate } from 'react-router-dom';
+
 import * as NavigationMenu from '@radix-ui/react-navigation-menu';
 import { NavigationMenuLink, NavigationMenuList } from './styles';
 
 export function MenuHeader() {
+    const navigateTo = useNavigate();
+    const handleGoToHome = () => {
+        navigateTo('/')
+    }
     return (
         <NavigationMenu.Root orientation='horizontal'>
             <NavigationMenuList>
                 <NavigationMenu.Item>
-                    <NavigationMenuLink>
+                    <NavigationMenuLink
+                        onClick={handleGoToHome}
+                    >
                         Calculadora
-                    </NavigationMenuLink>
-                </NavigationMenu.Item>
-                <NavigationMenu.Item>
-                    <NavigationMenuLink>
-                        Histórico de consulta
                     </NavigationMenuLink>
                 </NavigationMenu.Item>
             </NavigationMenuList>

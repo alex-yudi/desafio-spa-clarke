@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useNavigate } from "react-router-dom";
 import * as z from "zod";
 
 import { Calculator, ContainerCalculator, ContainerInput, ContainerTextHelper, ErrorInput, Form, InputNumber, Label } from "./styles";
@@ -9,7 +10,7 @@ import { Button } from "../../../../components/Button";
 type CalculatorValues = z.input<typeof SchemaCalculatorData>;
 
 export function ConsumptiomCalculador() {
-
+    const navitageTo = useNavigate();
     const {
         register,
         handleSubmit,
@@ -20,6 +21,7 @@ export function ConsumptiomCalculador() {
 
     const handleCalculateConsumption = () => {
         console.log('calculando')
+        navitageTo('/list-of-agents')
     }
     return (
         <ContainerCalculator>
