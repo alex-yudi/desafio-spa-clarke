@@ -1,28 +1,18 @@
-import { Field, ObjectType } from "type-graphql";
+import { gql } from 'apollo-server'
 
-@ObjectType()
-export class Agent {
-    @Field()
-    id: number;
+export const typeDefs = gql`
+  type Agent {
+    id: ID!
+    name: String!
+    link_logo: String!
+    state_origin: String!
+    cost_kwh: Int!
+    lim_min_kwh: Int!
+    total_customers: Int!
+    evaluation_customers: Int!
+  }
 
-    @Field()
-    name: string;
-
-    @Field()
-    link_logo: string;
-
-    @Field()
-    state_origin: string;
-
-    @Field()
-    cost_kwh: number;
-
-    @Field()
-    lim_min_kwh: number;
-
-    @Field()
-    total_customers: number;
-
-    @Field()
-    evaluation_customers: number;
-}
+  type Query {
+    fetchAgents: [Agent]
+  }
+`
