@@ -1,4 +1,5 @@
 import { ApolloServer, gql } from 'apollo-server'
+import { prisma } from './lib/prisma'
 
 type Agent = {
   id: number,
@@ -56,8 +57,10 @@ export const app = new ApolloServer({
   typeDefs,
   resolvers: {
     Query: {
-      agents: () => {
-        return teste
+      agents: async () => {
+        const listOfAgents = await prisma.agent.findMany()
+
+        return listOfAgents
       }
     },
   },

@@ -16,7 +16,7 @@ model Agent {
   link_logo            String
   state_origin         String
   cost_kwh             Int
-  lim_min_kwh          BigInt
+  lim_min_kwh          Int
   total_customers      Int
   evaluation_customers Float
 }
