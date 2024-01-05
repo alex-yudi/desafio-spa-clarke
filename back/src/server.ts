@@ -1,4 +1,4 @@
-import { app } from './app'
+/* import { app } from './app'
 import { env } from './env'
 
 app
@@ -9,3 +9,36 @@ app
   .then(() => {
     console.log(`🚀 HTTP Server running port ${env.PORT}`)
   })
+ */
+
+
+import { env } from './env'
+import 'reflect-metadata'
+
+import { ApolloServer } from 'apollo-server'
+import { buildSchema } from 'type-graphql'
+import { FetchAgentsResolver } from './resolvers/fetch-agents-resolver'
+
+export async function bootstrap() {
+  const schema = await buildSchema({
+    resolvers: [
+      FetchAgentsResolver
+    ],
+  })
+
+  const server = new ApolloServer({
+    schema,
+  })
+
+  server
+    .listen({
+      host: '0.0.0.0',
+      port: env.PORT,
+    })
+    .then(() => {
+      console.log(`🚀 HTTP Server running port ${env.PORT}`)
+    })
+
+}
+
+bootstrap()

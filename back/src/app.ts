@@ -1,39 +1,41 @@
-import fastify from 'fastify'
-import { ZodError } from 'zod'
-import { env } from './env'
-import fastifyJwt from '@fastify/jwt'
-import fastifyCookie from '@fastify/cookie'
-import { usersRoutes } from '@/http/controllers/users/routes'
+/* import { ApolloServer, gql } from 'apollo-server'
 
-export const app = fastify()
 
-app.register(fastifyJwt, {
-  secret: env.JWT_SECRET,
-  cookie: {
-    cookieName: 'refreshToken',
-    signed: false,
-  },
-  sign: {
-    expiresIn: '10m',
-  },
-})
+type Agent = {
+  id: string,
+  name: string,
+  link_logo: string,
+  state_origin: string
+  cost_kwh: number,
+  lim_min_kwh: number,
+  total_customers: number,
+  evaluation_customers: number,
+}
 
-app.register(fastifyCookie)
+type ListOfAgents = Agent[]
 
-app.register(usersRoutes)
-
-app.setErrorHandler((error, _, reply) => {
-  if (error instanceof ZodError) {
-    return reply
-      .status(400)
-      .send({ message: 'Validation error', issues: error.format() })
+const typeDefs = gql` 
+  type Agent = {
+    id: string,
+    name: string,
+    link_logo: string,
+    state_origin: string
+    cost_kwh: number,
+    lim_min_kwh: number,
+    total_customers: number,
+    evaluation_customers: number,
   }
 
-  if (env.NODE_ENV !== 'production') {
-    console.error(error)
-  } else {
-    // ToDo: Here we should log to an external tool like DataDog/NewRelic/Sentry
+  type Query {
+    listAgents: [Agent]
   }
+`
 
-  return reply.status(500).send({ message: 'Internal server error.' })
-})
+export const app = new ApolloServer({
+  typeDefs,
+  resolvers: {
+    Query: {
+      listAgents: () => 'Hello World'
+    },
+  },
+}) */
