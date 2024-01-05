@@ -54,6 +54,7 @@ export const ErrorInput = styled.div`
 
 export const InputNumber = styled.input`
     padding: 0.5rem;
+    outline-color: ${props => props.theme.colors.principal};
 `;
 
 export const ContainerTextHelper = styled.div`
