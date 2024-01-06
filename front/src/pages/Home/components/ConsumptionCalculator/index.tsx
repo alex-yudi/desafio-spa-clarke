@@ -7,8 +7,9 @@ import * as z from "zod";
 import { Calculator, ContainerCalculator, ContainerInput, ContainerTextHelper, ErrorInput, Form, InputNumber, Label } from "./styles";
 import { SchemaCalculatorData } from "../../../../utils/schemas/calculatorDataSchema";
 import { Button } from "../../../../components/Button";
-import { api } from "../../../../lib/axios";
 import { AgentsContext } from "../../../../stores/contexts/agentsStore";
+import { Suspense } from "react";
+import { Loading } from "../../../../components/Loading";
 
 type InputCalculatorValues = z.input<typeof SchemaCalculatorData>;
 type OutputCalculatorValues = z.output<typeof SchemaCalculatorData>;
@@ -31,35 +32,37 @@ export function ConsumptiomCalculador() {
     }
     return (
         <ContainerCalculator>
-            <Calculator>
-                <Form onSubmit={handleSubmit(handleCalculateConsumption)}>
-                    <h2>Calculadora de consumo</h2>
-                    <ContainerInput>
-                        <Label htmlFor="valueKwh">Informe seu consumo mensal de energia</Label>
-                        <InputNumber
-                            type="number"
-                            placeholder="Quantidade de Kwh"
-                            min={0}
-                            id="valueKwh"
-                            {...register("valueKw")}
-                        />
-                        <ErrorInput>
-                            {errors.valueKw && <span>{errors.valueKw.message}</span>}
-                        </ErrorInput>
-                    </ContainerInput>
-                    <Button
-                        type="submit"
-                    >
-                        Calcular
-                    </Button>
-                </Form>
+            <Suspense fallback={<Loading />}>
+                <Calculator>
+                    <Form onSubmit={handleSubmit(handleCalculateConsumption)}>
+                        <h2>Calculadora de consumo</h2>
+                        <ContainerInput>
+                            <Label htmlFor="valueKwh">Informe seu consumo mensal de energia</Label>
+                            <InputNumber
+                                type="number"
+                                placeholder="Quantidade de Kwh"
+                                min={0}
+                                id="valueKwh"
+                                {...register("valueKw")}
+                            />
+                            <ErrorInput>
+                                {errors.valueKw && <span>{errors.valueKw.message}</span>}
+                            </ErrorInput>
+                        </ContainerInput>
+                        <Button
+                            type="submit"
+                        >
+                            Calcular
+                        </Button>
+                    </Form>
 
-                <ContainerTextHelper>
-                    <p>
-                        A partir dos valores fornecidos, o nosso sistema irá verificar quais serão os melhores fornecedores de energia para você.
-                    </p>
-                </ContainerTextHelper>
-            </Calculator>
+                    <ContainerTextHelper>
+                        <p>
+                            A partir dos valores fornecidos, o nosso sistema irá verificar quais serão os melhores fornecedores de energia para você.
+                        </p>
+                    </ContainerTextHelper>
+                </Calculator>
+            </Suspense>
         </ContainerCalculator>
     )
 }
