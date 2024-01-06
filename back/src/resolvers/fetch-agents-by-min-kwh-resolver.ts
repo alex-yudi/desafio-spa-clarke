@@ -11,10 +11,6 @@ export class FetchAgentsByMinKwhResolver {
         lim_min_kwh: number
     ): Promise<AgentModel[]> {
 
-        if (lim_min_kwh <= 0) {
-            throw new Error("The value of lim_min_kwh must be greater than 0");
-        }
-
         const listOfAgents = await getListOfAgentsByMinKwh(lim_min_kwh);
 
         return listOfAgents;
