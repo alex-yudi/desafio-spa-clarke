@@ -38,7 +38,7 @@ export function ConsumptiomCalculador() {
                         <Label htmlFor="valueKwh">Informe seu consumo mensal de energia</Label>
                         <InputNumber
                             type="number"
-                            placeholder="Quantidade de Kw/mensal"
+                            placeholder="Quantidade de Kwh"
                             min={0}
                             id="valueKwh"
                             {...register("valueKw")}
