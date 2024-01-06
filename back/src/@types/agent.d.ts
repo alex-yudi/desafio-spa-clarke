@@ -1,5 +1,5 @@
 export type Agent = {
-    id: string,
+    id: number,
     name: string,
     link_logo: string,
     state_origin: string
