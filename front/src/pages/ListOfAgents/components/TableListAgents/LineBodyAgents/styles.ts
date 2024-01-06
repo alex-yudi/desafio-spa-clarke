@@ -7,6 +7,13 @@ export const LineDataAgents = styled.tr`
     border-bottom: 1px solid ${props => props.theme.colors.principal};
     & > td {
     }
+
+    & > td > img {
+        height: 3rem;
+        width: auto;
+        margin: 0 0.5rem;
+        padding: 0.1rem;
+    }
 `
 
 export const SelectAgent = styled.button`
