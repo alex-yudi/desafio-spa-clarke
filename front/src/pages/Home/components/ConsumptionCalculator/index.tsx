@@ -16,7 +16,7 @@ type OutputCalculatorValues = z.output<typeof SchemaCalculatorData>;
 type CalculateConsumptionProps = InputCalculatorValues | OutputCalculatorValues;
 
 export function ConsumptiomCalculador() {
-    const { fetchExample, listOfAgents } = useContextSelector(AgentsContext, (context) => context);
+    const { fetchExample, showLoadingCalculating } = useContextSelector(AgentsContext, (context) => context);
     const navitageTo = useNavigate();
     const {
         register,
@@ -32,37 +32,39 @@ export function ConsumptiomCalculador() {
     }
     return (
         <ContainerCalculator>
-            <Suspense fallback={<Loading />}>
-                <Calculator>
-                    <Form onSubmit={handleSubmit(handleCalculateConsumption)}>
-                        <h2>Calculadora de consumo</h2>
-                        <ContainerInput>
-                            <Label htmlFor="valueKwh">Informe seu consumo mensal de energia</Label>
-                            <InputNumber
-                                type="number"
-                                placeholder="Quantidade de Kwh"
-                                min={0}
-                                id="valueKwh"
-                                {...register("valueKw")}
-                            />
-                            <ErrorInput>
-                                {errors.valueKw && <span>{errors.valueKw.message}</span>}
-                            </ErrorInput>
-                        </ContainerInput>
-                        <Button
-                            type="submit"
-                        >
-                            Calcular
-                        </Button>
-                    </Form>
+            {
+                showLoadingCalculating &&
+                <Loading />
+            }
+            <Calculator>
+                <Form onSubmit={handleSubmit(handleCalculateConsumption)}>
+                    <h2>Calculadora de consumo</h2>
+                    <ContainerInput>
+                        <Label htmlFor="valueKwh">Informe seu consumo mensal de energia</Label>
+                        <InputNumber
+                            type="number"
+                            placeholder="Quantidade de Kwh"
+                            min={0}
+                            id="valueKwh"
+                            {...register("valueKw")}
+                        />
+                        <ErrorInput>
+                            {errors.valueKw && <span>{errors.valueKw.message}</span>}
+                        </ErrorInput>
+                    </ContainerInput>
+                    <Button
+                        type="submit"
+                    >
+                        Calcular
+                    </Button>
+                </Form>
 
-                    <ContainerTextHelper>
-                        <p>
-                            A partir dos valores fornecidos, o nosso sistema irá verificar quais serão os melhores fornecedores de energia para você.
-                        </p>
-                    </ContainerTextHelper>
-                </Calculator>
-            </Suspense>
+                <ContainerTextHelper>
+                    <p>
+                        A partir dos valores fornecidos, o nosso sistema irá verificar quais serão os melhores fornecedores de energia para você.
+                    </p>
+                </ContainerTextHelper>
+            </Calculator>
         </ContainerCalculator>
     )
 }

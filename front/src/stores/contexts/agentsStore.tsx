@@ -3,9 +3,23 @@ import { createContext } from 'use-context-selector'
 import { api } from '../../lib/axios'
 import { DataAgents } from '../../@types/dataAgents'
 
+type SuccessReq = {
+  error: false,
+  status: number,
+  data: DataAgents[],
+}
+type ErrorReq = {
+  error: true,
+  status: number,
+  errorMesssage: string,
+}
+
+type ResultQuery = SuccessReq | ErrorReq
+
 type AgentsContextType = {
-  fetchExample: (lim_min_kwh: number) => void,
-  listOfAgents: DataAgents[]
+  fetchExample: (lim_min_kwh: number) => Promise<ResultQuery>,
+  listOfAgents: DataAgents[],
+  showLoadingCalculating: boolean,
 }
 
 type AgentsStoreProviderProps = {
@@ -18,9 +32,11 @@ export const AgentsContext = createContext<AgentsContextType>(
 
 export function AgentsProvider({ children }: AgentsStoreProviderProps) {
   const [listOfAgents, setListOfAgents] = useState<DataAgents[]>([])
+  const [showLoadingCalculating, setShowLoadingCalculating] = useState<boolean>(false)
 
-  const fetchExample = useCallback(async (lim_min_kwh: number) => {
+  const fetchExample = useCallback(async (lim_min_kwh: number): Promise<ResultQuery> => {
     try {
+      setShowLoadingCalculating(true)
       const resultQuery = await api.post('/graphql', {
         query: ` 
           query fetchAgentsByMinKwh($limMinKwh: Float!){
@@ -41,8 +57,19 @@ export function AgentsProvider({ children }: AgentsStoreProviderProps) {
       })
       const listOfAgents = resultQuery.data.data.fetchAgentsByMinKwh
       setListOfAgents(listOfAgents)
-    } catch (error) {
-      console.log(error)
+      return {
+        error: false,
+        status: resultQuery.status,
+        data: listOfAgents
+      }
+    } catch (error: unknown) {
+      return {
+        error: true,
+        status: 500,
+        errorMesssage: error as string
+      }
+    } finally {
+      setShowLoadingCalculating(false)
     }
   }, [])
 
@@ -51,7 +78,7 @@ export function AgentsProvider({ children }: AgentsStoreProviderProps) {
   }, [fetchExample])
   return (
     <AgentsContext.Provider
-      value={{ fetchExample, listOfAgents }}
+      value={{ fetchExample, listOfAgents, showLoadingCalculating }}
     >
       {children}
     </AgentsContext.Provider>
