@@ -1,8 +1,9 @@
 # Documentação - Aplicação SPA - Desafio Clark
 
 ## Links do deploy:
-    Front: https://clarke-alex-yudi.netlify.app/
-    Back: https://odd-red-dibbler-hose.cyclic.app/
+Front: <https://clarke-alex-yudi.netlify.app/>
+
+Back: <https://odd-red-dibbler-hose.cyclic.app/>
 
 ## Tecnologias utilizadas:
     Front: 
