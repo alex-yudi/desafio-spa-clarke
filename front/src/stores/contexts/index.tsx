@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { ExampleProvider } from './counterStore';
+import { AgentsProvider } from './agentsStore';
 
 interface AppProviderProps {
   children: ReactNode
@@ -7,7 +7,7 @@ interface AppProviderProps {
 
 export function AppProvider({ children }: AppProviderProps) {
   return (
-    <ExampleProvider>{children}</ExampleProvider>
+    <AgentsProvider>{children}</AgentsProvider>
   );
 }
 

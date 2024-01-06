@@ -1,15 +1,19 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import { useContextSelector } from "use-context-selector";
 import * as z from "zod";
 
 import { Calculator, ContainerCalculator, ContainerInput, ContainerTextHelper, ErrorInput, Form, InputNumber, Label } from "./styles";
 import { SchemaCalculatorData } from "../../../../utils/schemas/calculatorDataSchema";
 import { Button } from "../../../../components/Button";
+import { api } from "../../../../lib/axios";
+import { AgentsContext } from "../../../../stores/contexts/agentsStore";
 
 type CalculatorValues = z.input<typeof SchemaCalculatorData>;
 
 export function ConsumptiomCalculador() {
+    const { fetchExample } = useContextSelector(AgentsContext, (context) => context);
     const navitageTo = useNavigate();
     const {
         register,
@@ -19,7 +23,8 @@ export function ConsumptiomCalculador() {
         resolver: zodResolver(SchemaCalculatorData),
     });
 
-    const handleCalculateConsumption = (data: CalculatorValues) => {
+    const handleCalculateConsumption = async (data: CalculatorValues) => {
+        await fetchExample()
         navitageTo('/list-of-agents')
     }
     return (
