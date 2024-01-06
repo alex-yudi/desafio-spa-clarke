@@ -13,6 +13,6 @@ export const typeDefs = gql`
   }
 
   type Query {
-    fetchAgents: [Agent]
+    fetchAgentsByMinKwh: [Agent]
   }
 `
