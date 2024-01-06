@@ -8,13 +8,13 @@ async function main() {
         update: {},
         create: {
             id: 1,
-            name: "Teste",
-            link_logo: "Teste",
-            state_origin: "Teste",
-            cost_kwh: 1,
-            lim_min_kwh: 1,
-            total_customers: 1,
-            evaluation_customers: 1,
+            name: "EDP SMART",
+            link_logo: "https://i.ibb.co/5vtZdfj/edp-logo.jpg",
+            state_origin: "SP",
+            cost_kwh: 6100,
+            lim_min_kwh: 500,
+            total_customers: 750,
+            evaluation_customers: 8,
         },
     });
 
@@ -23,13 +23,13 @@ async function main() {
         update: {},
         create: {
             id: 2,
-            name: "Teste2",
-            link_logo: "Teste2",
-            state_origin: "Teste2",
-            cost_kwh: 2,
-            lim_min_kwh: 2,
-            total_customers: 2,
-            evaluation_customers: 2,
+            name: "AES TIETE INTEGRA",
+            link_logo: "https://i.ibb.co/607s639/aes-tiete.png",
+            state_origin: "SP",
+            cost_kwh: 5700,
+            lim_min_kwh: 550,
+            total_customers: 350,
+            evaluation_customers: 7,
         },
     });
 
@@ -38,13 +38,75 @@ async function main() {
         update: {},
         create: {
             id: 3,
-            name: "Teste3",
-            link_logo: "Teste3",
-            state_origin: "Teste3",
-            cost_kwh: 3,
-            lim_min_kwh: 3,
-            total_customers: 3,
-            evaluation_customers: 3,
+            name: "MATRIX COM",
+            link_logo: "https://i.ibb.co/WNXNfwZ/matrix-logo.jpg",
+            state_origin: "SP",
+            cost_kwh: 8000,
+            lim_min_kwh: 700,
+            total_customers: 50,
+            evaluation_customers: 6.7,
+        },
+    });
+
+    const agent4 = await prisma.agent.upsert({
+        where: { id: 4 },
+        update: {},
+        create: {
+            id: 4,
+            name: "COPEL COM",
+            link_logo: "https://i.ibb.co/dtf6fSd/copel-logo.png",
+            state_origin: "PR",
+            cost_kwh: 4500,
+            lim_min_kwh: 650,
+            total_customers: 980,
+            evaluation_customers: 9,
+        },
+    });
+
+
+    const agent5 = await prisma.agent.upsert({
+        where: { id: 5 },
+        update: {},
+        create: {
+            id: 5,
+            name: "COMERC POWER",
+            link_logo: "https://i.ibb.co/b5KKTPC/comerc-logo.jpg",
+            state_origin: "SP",
+            cost_kwh: 5200,
+            lim_min_kwh: 800,
+            total_customers: 500,
+            evaluation_customers: 8.5,
+        },
+    });
+
+
+    const agent6 = await prisma.agent.upsert({
+        where: { id: 6 },
+        update: {},
+        create: {
+            id: 6,
+            name: "2W VAREJISTA",
+            link_logo: "https://i.ibb.co/C5kFddt/2w-logo.png",
+            state_origin: "SP",
+            cost_kwh: 3500,
+            lim_min_kwh: 813,
+            total_customers: 35,
+            evaluation_customers: 7.5,
+        },
+    });
+
+    const agent7 = await prisma.agent.upsert({
+        where: { id: 7 },
+        update: {},
+        create: {
+            id: 7,
+            name: "ENGIE BR CVE",
+            link_logo: "https://i.ibb.co/Xp4yPmf/engie-logo.png",
+            state_origin: "SC",
+            cost_kwh: 9000,
+            lim_min_kwh: 1000,
+            total_customers: 158,
+            evaluation_customers: 6.5,
         },
     });
 }
