@@ -4,7 +4,7 @@ import { api } from '../../lib/axios'
 import { DataAgents } from '../../@types/dataAgents'
 
 type AgentsContextType = {
-  fetchExample: () => void,
+  fetchExample: (lim_min_kwh: number) => void,
   listOfAgents: DataAgents[]
 }
 
@@ -19,12 +19,12 @@ export const AgentsContext = createContext<AgentsContextType>(
 export function AgentsProvider({ children }: AgentsStoreProviderProps) {
   const [listOfAgents, setListOfAgents] = useState<DataAgents[]>([])
 
-  const fetchExample = useCallback(async () => {
+  const fetchExample = useCallback(async (lim_min_kwh: number) => {
     try {
       const resultQuery = await api.post('/graphql', {
         query: ` 
-          query {
-              fetchAgents {
+          query fetchAgentsByMinKwh($limMinKwh: Float!){
+            fetchAgentsByMinKwh(lim_min_kwh: $limMinKwh) {
               id,
               name,
               link_logo,
@@ -34,10 +34,12 @@ export function AgentsProvider({ children }: AgentsStoreProviderProps) {
               total_customers,
               evaluation_customers
               }}
-          `
+          `,
+        variables: {
+          limMinKwh: lim_min_kwh
+        }
       })
-
-      const listOfAgents = resultQuery.data.data.fetchAgents
+      const listOfAgents = resultQuery.data.data.fetchAgentsByMinKwh
       setListOfAgents(listOfAgents)
     } catch (error) {
       console.log(error)

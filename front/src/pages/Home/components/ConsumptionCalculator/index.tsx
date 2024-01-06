@@ -10,21 +10,23 @@ import { Button } from "../../../../components/Button";
 import { api } from "../../../../lib/axios";
 import { AgentsContext } from "../../../../stores/contexts/agentsStore";
 
-type CalculatorValues = z.input<typeof SchemaCalculatorData>;
+type InputCalculatorValues = z.input<typeof SchemaCalculatorData>;
+type OutputCalculatorValues = z.output<typeof SchemaCalculatorData>;
+type CalculateConsumptionProps = InputCalculatorValues | OutputCalculatorValues;
 
 export function ConsumptiomCalculador() {
-    const { fetchExample } = useContextSelector(AgentsContext, (context) => context);
+    const { fetchExample, listOfAgents } = useContextSelector(AgentsContext, (context) => context);
     const navitageTo = useNavigate();
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<CalculatorValues>({
+    } = useForm<InputCalculatorValues>({
         resolver: zodResolver(SchemaCalculatorData),
     });
 
-    const handleCalculateConsumption = async (data: CalculatorValues) => {
-        await fetchExample()
+    const handleCalculateConsumption = async ({ valueKw }: CalculateConsumptionProps) => {
+        await fetchExample(valueKw as number)
         navitageTo('/list-of-agents')
     }
     return (
