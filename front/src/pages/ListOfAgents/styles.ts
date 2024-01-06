@@ -13,3 +13,12 @@ export const ContainerListOfAgents = styled.div`
         text-decoration-color: ${props => props.theme.colors.principal};
     }
 `;
+
+export const NotFoundAgent = styled.h2`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 40vh;
+    width: 100%;
+`
