@@ -14,11 +14,13 @@ Back: <https://odd-red-dibbler-hose.cyclic.app/>
         - ContextApi
         - React-router-dom
         - RadixUi
+        - Cypress para dois testes 2e2
     Back:
         - Node com Typescript
         - Prisma com PostgreSql
         - Apollo-server(graphql) com type-graphql
         - Docker-compose para ambiente de desenvolvimento (BD em container)
+        - Vitest para 2 testes unitários
         
 ## Para rodar a aplicação localmente:
     Será necessário ter instalados em sua máquina: 
