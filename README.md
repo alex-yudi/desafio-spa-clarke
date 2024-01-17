@@ -1,5 +1,5 @@
 # Documentação - Aplicação SPA - Desafio Clark
-    Projeto construído no desafio técnico para a vaga de Desenvolvedor Fullstack Jr. para a Clarke Energia.
+- Projeto construído no desafio técnico para a vaga de Desenvolvedor Fullstack Jr. para a Clarke Energia.
 
 ## Links do deploy:
 Front: <https://clarke-alex-yudi.netlify.app/>
